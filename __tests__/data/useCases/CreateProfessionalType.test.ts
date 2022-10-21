@@ -21,9 +21,29 @@ describe('CreateProfessionalType Use Case', () => {
     const createTypeProfessional = new CreateProfessionalType(
       professionalTypeRepository
     );
+    
     createTypeProfessional.execute(input);
 
     expect(professionalTypeRepository.description).toBe(input.description);
     expect(professionalTypeRepository.situation).toBe(input.situation);
+  });
+
+  it('should throw an error if ProfessionalTypeRepository throws', () => {
+    class ProfessionalTypeRepositoryStub implements ProfessionalTypeRepository {
+      add(input: { description: string; situation: boolean; }) {
+        throw new Error();
+      }
+    }
+    const input = {
+      description: 'some description',
+      situation: true,
+    };
+    const professionalTypeRepository = new ProfessionalTypeRepositoryStub();
+    const createTypeProfessional = new CreateProfessionalType(
+      professionalTypeRepository
+    );
+    
+    expect(() => createTypeProfessional.execute(input))
+      .toThrow();
   });
 });
