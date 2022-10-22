@@ -21,6 +21,10 @@ class ProfessionalTypeRepositorySpy implements ProfessionalTypeRepository {
       updatedAt: new Date(),
     }));
   }
+
+  public get(input: { id: string; }): Promise<ProfessionalType | undefined> {
+    throw new Error('Method not implemented.');
+  }
 }
 
 class ProfessionalTypeRepositoryStub implements ProfessionalTypeRepository {
@@ -34,6 +38,10 @@ class ProfessionalTypeRepositoryStub implements ProfessionalTypeRepository {
       createdAt: new Date(),
       updatedAt: new Date(),
     }));
+  }
+
+  public get(input: { id: string; }): Promise<ProfessionalType | undefined> {
+    throw new Error('Method not implemented.');
   }
 }
 
@@ -66,6 +74,10 @@ describe('CreateProfessionalType Use Case', () => {
     class ProfessionalTypeRepositoryStub implements ProfessionalTypeRepository {
       public async add(input: { description: string; situation: boolean; }) {
         return Promise.reject(new Error());
+      }
+
+      public get(input: { id: string; }): Promise<ProfessionalType | undefined> {
+        throw new Error('Method not implemented.');
       }
     }
     const input = {
