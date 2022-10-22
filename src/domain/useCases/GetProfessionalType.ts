@@ -13,7 +13,14 @@ export class GetProfessionalType {
   }
 
   public async execute({ id }: Input): Promise<ProfessionalType | undefined> {
-    this.professionalTypeRepository.get({ id });
-    return undefined;
+    const output = await this.professionalTypeRepository.get({ id });
+    if (!output) return;
+    return {
+      id: output.id,
+      description: output.description,
+      situation: output.situation,
+      createdAt: output.createdAt,
+      updatedAt: output.updatedAt,
+    };
   }
 }
