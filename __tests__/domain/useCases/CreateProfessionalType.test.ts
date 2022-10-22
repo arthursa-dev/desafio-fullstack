@@ -2,48 +2,7 @@ import { set, reset } from 'mockdate';
 import { ProfessionalType } from '../../../src/domain/entities/ProfessionalType';
 import { ProfessionalTypeRepository } from "../../../src/domain/repositories/ProfessionalTypeRepository";
 import { CreateProfessionalType } from "../../../src/domain/useCases/CreateProfessionalType";
-
-class ProfessionalTypeRepositorySpy implements ProfessionalTypeRepository {
-  public description?: string;
-  public situation?: boolean;
-
-  public async add({
-    description,
-    situation
-  }: { description: string; situation: boolean }) {
-    this.description = description;
-    this.situation = situation;
-    return Promise.resolve(new ProfessionalType({
-      id: 'valid_id',
-      description: 'some description',
-      situation: true,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    }));
-  }
-
-  public get(input: { id: string; }): Promise<ProfessionalType | undefined> {
-    throw new Error('Method not implemented.');
-  }
-}
-
-class ProfessionalTypeRepositoryStub implements ProfessionalTypeRepository {
-  public async add(
-    { description, situation }: { description: string; situation: boolean }
-  ) {
-    return Promise.resolve(new ProfessionalType({
-      id: 'valid_id',
-      description: 'valid description',
-      situation: true,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    }));
-  }
-
-  public get(input: { id: string; }): Promise<ProfessionalType | undefined> {
-    throw new Error('Method not implemented.');
-  }
-}
+import { ProfessionalTypeRepositorySpy, ProfessionalTypeRepositoryStub } from '../../testDoubles';
 
 describe('CreateProfessionalType Use Case', () => {
   beforeAll(() => {
