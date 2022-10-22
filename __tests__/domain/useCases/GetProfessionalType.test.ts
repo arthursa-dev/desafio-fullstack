@@ -35,6 +35,9 @@ describe('GetProfessionalType Use Case', () => {
       get(input: { id: string; }): Promise<ProfessionalType | undefined> {
         throw new Error();
       }
+      update(input: { id: string; description: string; situation: boolean; }): Promise<ProfessionalType | undefined> {
+        throw new Error('Method not implemented.');
+      }
     }
     const input = {
       id: 'any_id',
