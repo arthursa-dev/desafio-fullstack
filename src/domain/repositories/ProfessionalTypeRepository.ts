@@ -5,5 +5,6 @@ export interface ProfessionalTypeRepository {
   get(input: { id: string }): Promise<ProfessionalType | undefined>;
   update(input: { id: string, description?: string, situation?: boolean }): Promise<
     ProfessionalType | undefined
-  >
+  >;
+  list(): Promise<ProfessionalType[]>;
 }
