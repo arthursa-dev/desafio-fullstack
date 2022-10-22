@@ -15,7 +15,14 @@ export class UpdateProfessionalType {
   }
 
   public async execute({ id, description, situation }: Input): Promise<ProfessionalType | undefined> {
-    this.professionalTypeRepository.update({ id, description, situation })
-    return undefined;
+    const output = await this.professionalTypeRepository.update({ id, description, situation })
+    if (!output) return;
+    return {
+      id: output.id,
+      description: output.description,
+      situation: output.situation,
+      createdAt: output.createdAt,
+      updatedAt: output.updatedAt
+    };
   }
 }
