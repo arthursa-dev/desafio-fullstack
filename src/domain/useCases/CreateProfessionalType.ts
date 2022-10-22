@@ -5,6 +5,14 @@ type Input = {
   situation: boolean;
 }
 
+type Output = {
+  id: string;
+  description: string;
+  situation: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 export class CreateProfessionalType {
   private readonly professionalTypeRepository: ProfessionalTypeRepository;
   
@@ -12,7 +20,17 @@ export class CreateProfessionalType {
     this.professionalTypeRepository = professionalTypeRepository;
   }
   
-  public execute({ description, situation }: Input) {
-    this.professionalTypeRepository.add({ description, situation });
+  public async execute({ description, situation }: Input): Promise<Output> {
+    const output = await this.professionalTypeRepository.add({
+      description,
+      situation
+    });
+    return {
+      id: output.id,
+      description: output.description,
+      situation: output.situation,
+      createdAt: output.createdAt,
+      updatedAt: output.updatedAt,
+    };
   }
 }
