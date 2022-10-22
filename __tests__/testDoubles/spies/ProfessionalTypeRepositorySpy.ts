@@ -25,4 +25,19 @@ export class ProfessionalTypeRepositorySpy implements ProfessionalTypeRepository
     this.id = id;
     return Promise.resolve(undefined);
   }
+
+  public update({
+    id,
+    description,
+    situation
+  }: {
+    id: string;
+    description?: string;
+    situation?: boolean;
+  }): Promise<ProfessionalType | undefined> {
+    this.id = id;
+    this.description = description;
+    this.situation = situation;
+    return Promise.resolve(undefined);
+  }
 }
