@@ -1,7 +1,7 @@
 import { ProfessionalType } from "../../../src/domain/entities/ProfessionalType";
 import { ProfessionalTypeRepository } from "../../../src/domain/repositories/ProfessionalTypeRepository";
 import { GetProfessionalType } from "../../../src/domain/useCases/GetProfessionalType";
-import { ProfessionalTypeRepositorySpy } from "../../testDoubles";
+import { ProfessionalTypeRepositorySpy, ProfessionalTypeRepositoryStub } from "../../testDoubles";
 
 describe('GetProfessionalType Use Case', () => {
   it('should call ProfessionalTypeRepository with correct values', async () => {
@@ -37,5 +37,20 @@ describe('GetProfessionalType Use Case', () => {
 
     expect(() => getProfessionalType.execute(input))
       .rejects.toThrow();
+  });
+
+  it('should return undefined if professional type with passed id doesn\'t exist', async () => {
+    const input = {
+      id: 'valid_id',
+    };
+    const professionalTypeRepository = new ProfessionalTypeRepositoryStub();
+    professionalTypeRepository.output = undefined;
+    const getProfessionalType = new GetProfessionalType(
+      professionalTypeRepository
+    );
+
+    const output = await getProfessionalType.execute(input);
+
+    expect(output).toBeUndefined();
   });
 });
