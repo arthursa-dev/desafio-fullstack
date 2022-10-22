@@ -21,4 +21,28 @@ describe('UpdateProfessionalType Use Case', () => {
     expect(professionalTypeRepository.description).toBe(input.description);
     expect(professionalTypeRepository.situation).toBe(input.situation);
   });
+
+  it('should throw an error if ProfessionalTypeRepository throws', async () => {
+    class ProfessionalTypeRepositoryStub implements ProfessionalTypeRepository {
+      add(input: { description: string; situation: boolean; }): Promise<ProfessionalType> {
+        throw new Error("Method not implemented.");
+      }
+      get(input: { id: string; }): Promise<ProfessionalType | undefined> {
+        throw new Error('Method not implemented.');
+      }
+      update(input: { id: string; description: string; situation: boolean; }): Promise<ProfessionalType | undefined> {
+        throw new Error();
+      }
+    }
+    const input = {
+      id: 'any_id',
+    };
+    const professionalTypeRepository = new ProfessionalTypeRepositoryStub();
+    const updateProfessionalType = new UpdateProfessionalType(
+      professionalTypeRepository
+    );
+
+    expect(() => updateProfessionalType.execute(input))
+      .rejects.toThrow();
+  });
 });
