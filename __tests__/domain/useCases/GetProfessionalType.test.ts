@@ -1,9 +1,18 @@
+import { set, reset } from 'mockdate';
 import { ProfessionalType } from "../../../src/domain/entities/ProfessionalType";
 import { ProfessionalTypeRepository } from "../../../src/domain/repositories/ProfessionalTypeRepository";
 import { GetProfessionalType } from "../../../src/domain/useCases/GetProfessionalType";
 import { ProfessionalTypeRepositorySpy, ProfessionalTypeRepositoryStub } from "../../testDoubles";
 
 describe('GetProfessionalType Use Case', () => {
+  beforeAll(() => {
+    set(new Date());
+  });
+
+  afterAll(() => {
+    reset();
+  });
+  
   it('should call ProfessionalTypeRepository with correct values', async () => {
     const input = {
       id: 'valid_id',
@@ -52,5 +61,25 @@ describe('GetProfessionalType Use Case', () => {
     const output = await getProfessionalType.execute(input);
 
     expect(output).toBeUndefined();
+  });
+
+  it('should return a professional type data when passed an existing id', async () => {
+    const input = {
+      id: 'valid_id',
+    };
+    const professionalTypeRepository = new ProfessionalTypeRepositoryStub();
+    const getProfessionalType = new GetProfessionalType(
+      professionalTypeRepository
+    );
+
+    const output = await getProfessionalType.execute(input);
+
+    expect(output).toEqual({
+      id: 'valid_id',
+      description: 'valid description',
+      situation: true,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    });
   });
 });
