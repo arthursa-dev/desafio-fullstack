@@ -21,6 +21,9 @@ export class ProfessionalTypeRepositoryStub implements ProfessionalTypeRepositor
   }
 
   public update(input: { id: string; description: string; situation: boolean; }): Promise<ProfessionalType | undefined> {
-    throw new Error("Method not implemented.");
+    return Promise.resolve({
+      ...this.output!,
+      description: 'updated description'
+    });
   }
 }
