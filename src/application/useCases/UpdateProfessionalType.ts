@@ -1,5 +1,5 @@
-import { ProfessionalType } from "../entities/ProfessionalType";
-import { ProfessionalTypeRepository } from "../repositories/ProfessionalTypeRepository";
+import { ProfessionalType } from "../../domain/entities/ProfessionalType";
+import { ProfessionalTypeRepository } from "../../domain/repositories/ProfessionalTypeRepository";
 
 type Input = {
   id: string;

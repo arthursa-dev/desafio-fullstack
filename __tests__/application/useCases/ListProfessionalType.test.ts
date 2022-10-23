@@ -1,7 +1,5 @@
 import { ProfessionalType } from "../../../src/domain/entities/ProfessionalType";
-import { ProfessionalTypeRepository } from "../../../src/domain/repositories/ProfessionalTypeRepository";
-import { GetProfessionalType } from "../../../src/domain/useCases/GetProfessionalType";
-import { ListProfessionalType } from '../../../src/domain/useCases/ListProfessionalType';
+import { ListProfessionalType } from '../../../src/application/useCases/ListProfessionalType';
 import { ProfessionalTypeRepositorySpy, ProfessionalTypeRepositoryStub } from "../../testDoubles";
 
 describe('GetProfessionalType Use Case', () => {

@@ -1,4 +1,4 @@
-import { ProfessionalTypeRepository } from "../repositories/ProfessionalTypeRepository";
+import { ProfessionalTypeRepository } from "../../domain/repositories/ProfessionalTypeRepository";
 
 type Input = {
   description: string;

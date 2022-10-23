@@ -1,10 +1,10 @@
 import { set, reset } from 'mockdate';
 import { ProfessionalType } from "../../../src/domain/entities/ProfessionalType";
 import { ProfessionalTypeRepository } from "../../../src/domain/repositories/ProfessionalTypeRepository";
-import { UpdateProfessionalType } from "../../../src/domain/useCases/UpdateProfessionalType";
+import { GetProfessionalType } from "../../../src/application/useCases/GetProfessionalType";
 import { ProfessionalTypeRepositorySpy, ProfessionalTypeRepositoryStub } from "../../testDoubles";
 
-describe('UpdateProfessionalType Use Case', () => {
+describe('GetProfessionalType Use Case', () => {
   beforeAll(() => {
     set(new Date());
   });
@@ -16,19 +16,15 @@ describe('UpdateProfessionalType Use Case', () => {
   it('should call ProfessionalTypeRepository with correct values', async () => {
     const input = {
       id: 'valid_id',
-      description: 'updated description',
-      situation: false,
     };
     const professionalTypeRepository = new ProfessionalTypeRepositorySpy();
-    const updateProfessionalType = new UpdateProfessionalType(
+    const getProfessionalType = new GetProfessionalType(
       professionalTypeRepository
     );
 
-    await updateProfessionalType.execute(input);
+    await getProfessionalType.execute(input);
 
     expect(professionalTypeRepository.id).toBe(input.id);
-    expect(professionalTypeRepository.description).toBe(input.description);
-    expect(professionalTypeRepository.situation).toBe(input.situation);
   });
 
   it('should throw an error if ProfessionalTypeRepository throws', async () => {
@@ -37,10 +33,10 @@ describe('UpdateProfessionalType Use Case', () => {
         throw new Error("Method not implemented.");
       }
       get(input: { id: string; }): Promise<ProfessionalType | undefined> {
-        throw new Error('Method not implemented.');
+        throw new Error();
       }
       update(input: { id: string; description: string; situation: boolean; }): Promise<ProfessionalType | undefined> {
-        throw new Error();
+        throw new Error('Method not implemented.');
       }
       list(): Promise<ProfessionalType[]> {
         throw new Error('Method not implemented.');
@@ -50,29 +46,43 @@ describe('UpdateProfessionalType Use Case', () => {
       id: 'any_id',
     };
     const professionalTypeRepository = new ProfessionalTypeRepositoryStub();
-    const updateProfessionalType = new UpdateProfessionalType(
+    const getProfessionalType = new GetProfessionalType(
       professionalTypeRepository
     );
 
-    expect(() => updateProfessionalType.execute(input))
+    expect(() => getProfessionalType.execute(input))
       .rejects.toThrow();
   });
 
-  it('should return an updated professional type data when passed an existing id', async () => {
+  it('should return undefined if professional type with passed id doesn\'t exist', async () => {
     const input = {
       id: 'valid_id',
-      description: 'updated description',
     };
     const professionalTypeRepository = new ProfessionalTypeRepositoryStub();
-    const updateProfessionalType = new UpdateProfessionalType(
+    professionalTypeRepository.output = undefined;
+    const getProfessionalType = new GetProfessionalType(
       professionalTypeRepository
     );
 
-    const output = await updateProfessionalType.execute(input);
+    const output = await getProfessionalType.execute(input);
+
+    expect(output).toBeUndefined();
+  });
+
+  it('should return a professional type data when passed an existing id', async () => {
+    const input = {
+      id: 'valid_id',
+    };
+    const professionalTypeRepository = new ProfessionalTypeRepositoryStub();
+    const getProfessionalType = new GetProfessionalType(
+      professionalTypeRepository
+    );
+
+    const output = await getProfessionalType.execute(input);
 
     expect(output).toEqual({
       id: 'valid_id',
-      description: 'updated description',
+      description: 'valid description',
       situation: true,
       createdAt: new Date(),
       updatedAt: new Date(),

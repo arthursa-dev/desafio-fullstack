@@ -1,7 +1,7 @@
 import { set, reset } from 'mockdate';
 import { ProfessionalType } from '../../../src/domain/entities/ProfessionalType';
 import { ProfessionalTypeRepository } from "../../../src/domain/repositories/ProfessionalTypeRepository";
-import { CreateProfessionalType } from "../../../src/domain/useCases/CreateProfessionalType";
+import { CreateProfessionalType } from "../../../src/application/useCases/CreateProfessionalType";
 import { ProfessionalTypeRepositorySpy, ProfessionalTypeRepositoryStub } from '../../testDoubles';
 
 describe('CreateProfessionalType Use Case', () => {
