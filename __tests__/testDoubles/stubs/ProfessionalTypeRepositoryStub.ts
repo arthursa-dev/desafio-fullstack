@@ -26,4 +26,8 @@ export class ProfessionalTypeRepositoryStub implements ProfessionalTypeRepositor
       description: 'updated description'
     });
   }
+
+  public list(): Promise<ProfessionalType[]> {
+    return Promise.resolve([this.output!]);
+  }
 }

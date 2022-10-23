@@ -38,6 +38,9 @@ describe('GetProfessionalType Use Case', () => {
       update(input: { id: string; description: string; situation: boolean; }): Promise<ProfessionalType | undefined> {
         throw new Error('Method not implemented.');
       }
+      list(): Promise<ProfessionalType[]> {
+        throw new Error('Method not implemented.');
+      }
     }
     const input = {
       id: 'any_id',

@@ -40,4 +40,8 @@ export class ProfessionalTypeRepositorySpy implements ProfessionalTypeRepository
     this.situation = situation;
     return Promise.resolve(undefined);
   }
+
+  public list(): Promise<ProfessionalType[]> {
+    throw new Error('Method not implemented.');
+  }
 }
