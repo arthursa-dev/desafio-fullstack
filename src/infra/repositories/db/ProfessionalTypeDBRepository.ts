@@ -12,8 +12,15 @@ export class ProfessionalTypeDBRepository implements ProfessionalTypeRepository 
   add(input: { description: string; situation: boolean; }): Promise<ProfessionalType> {
     throw new Error("Method not implemented.");
   }
-  get(input: { id: string; }): Promise<ProfessionalType | undefined> {
-    throw new Error("Method not implemented.");
+  async get({ id }: { id: string; }): Promise<ProfessionalType | undefined> {
+    const [result] = await this.databaseConnection.query("select * from professional_type where id = $1", [id]);
+    return new ProfessionalType({
+      id: result.id,
+      description: result.description,
+      situation: result.situation,
+      createdAt: result.created_at,
+      updatedAt: result.updated_at,
+    });
   }
   update(input: { id: string; description?: string | undefined; situation?: boolean | undefined; }): Promise<ProfessionalType | undefined> {
     throw new Error("Method not implemented.");
