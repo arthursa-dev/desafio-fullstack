@@ -32,8 +32,26 @@ export class ProfessionalTypeDBRepository implements ProfessionalTypeRepository 
     });
   }
 
-  update(input: { id: string; description?: string | undefined; situation?: boolean | undefined; }): Promise<ProfessionalType | undefined> {
-    throw new Error("Method not implemented.");
+  async update({
+    id,
+    description,
+    situation
+  }: {
+    id: string;
+    description?: string | undefined;
+    situation?: boolean | undefined;
+  }): Promise<ProfessionalType | undefined> {
+    const [result] = await this.databaseConnection.query(
+      "update professional_type set description=$1, situation=$2 where id = $3 returning *",
+      [description, situation, id]
+    );
+    return new ProfessionalType({
+      id: result.id,
+      description: result.description,
+      situation: result.situation,
+      createdAt: result.created_at,
+      updatedAt: result.updated_at,
+    });
   }
 
   async list(): Promise<ProfessionalType[]> {
