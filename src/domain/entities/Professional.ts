@@ -29,6 +29,10 @@ export class Professional {
     createdAt,
     updatedAt,
   }: ProfessionalProps) {
+    if (!this.isPhoneValid(phone)) {
+      throw new Error('Invalid phone number');
+    }
+    
     this.id = id;
     this.name = name;
     this.phone = phone;
@@ -37,5 +41,10 @@ export class Professional {
     this.situation = situation;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
+  }
+
+  isPhoneValid(phone: string) {
+    const regex = /([(]?[0]?[1-9]{2}[)]?)[9]?([1-9]{4})-?([0-9]{4})/;
+    return regex.test(phone);
   }
 }
