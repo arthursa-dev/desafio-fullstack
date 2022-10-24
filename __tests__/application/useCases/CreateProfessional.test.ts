@@ -33,4 +33,32 @@ describe('CreateProfessional Use Case', () => {
     expect(professionalRepository.professionalType).toBe('valid_id');
     expect(professionalRepository.situation).toBe(true);
   });
+
+  it('should throw an error if ProfessionalRepository throws', () => {
+    class ProfessionalRepositoryStub implements ProfessionalRepository {
+      public async add(input: {
+        name: string;
+        phone: string;
+        email: string;
+        professionalType: string;
+        situation: boolean;
+      }) {
+        return Promise.reject(new Error());
+      }
+    }
+    const input = {
+      name: 'name',
+      phone: '(99) 99999-9999',
+      email: 'valid_email@mail.com',
+      professionalType: 'valid_id',
+      situation: true,
+    };
+    const professionalRepository = new ProfessionalRepositoryStub();
+    const createProfessional = new CreateProfessional(
+      professionalRepository
+    );
+    
+    expect(() => createProfessional.execute(input))
+      .rejects.toThrow();
+  });
 });
