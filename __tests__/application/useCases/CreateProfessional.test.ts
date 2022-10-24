@@ -4,6 +4,14 @@ import { ProfessionalRepository } from '../../../src/domain/repositories/Profess
 import { ProfessionalRepositorySpy } from '../../testDoubles/spies/ProfessionalRepositorySpy';
 
 describe('CreateProfessional Use Case', () => {
+  const input = {
+    name: 'name',
+    phone: '(99) 99999-9999',
+    email: 'valid_email@mail.com',
+    professionalType: 'valid_id',
+    situation: true,
+  };
+  
   beforeAll(() => {
     set(new Date());
   });
@@ -13,13 +21,6 @@ describe('CreateProfessional Use Case', () => {
   });
   
   it('should call ProfessionalRepository with correct values', async () => {
-    const input = {
-      name: 'name',
-      phone: '(99) 99999-9999',
-      email: 'valid_email@mail.com',
-      professionalType: 'valid_id',
-      situation: true,
-    };
     const professionalRepository = new ProfessionalRepositorySpy();
     const createProfessional = new CreateProfessional(
       professionalRepository
@@ -46,13 +47,6 @@ describe('CreateProfessional Use Case', () => {
         return Promise.reject(new Error());
       }
     }
-    const input = {
-      name: 'name',
-      phone: '(99) 99999-9999',
-      email: 'valid_email@mail.com',
-      professionalType: 'valid_id',
-      situation: true,
-    };
     const professionalRepository = new ProfessionalRepositoryStub();
     const createProfessional = new CreateProfessional(
       professionalRepository
