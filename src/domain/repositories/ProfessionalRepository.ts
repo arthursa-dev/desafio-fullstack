@@ -8,4 +8,5 @@ export interface ProfessionalRepository {
     professionalType: string;
     situation: boolean;
   }): Promise<Professional>;
+  get(input: { id: string }): Promise<Professional>;
 }
