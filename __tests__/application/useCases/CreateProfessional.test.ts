@@ -1,5 +1,6 @@
 import { set, reset } from 'mockdate';
 import { CreateProfessional } from '../../../src/application/useCases/CreateProfessional';
+import { Professional } from '../../../src/domain/entities/Professional';
 import { ProfessionalRepository } from '../../../src/domain/repositories/ProfessionalRepository';
 import { ProfessionalRepositorySpy, ProfessionalRepositoryStub } from '../../testDoubles';
 
@@ -45,6 +46,10 @@ describe('CreateProfessional Use Case', () => {
         situation: boolean;
       }) {
         return Promise.reject(new Error());
+      }
+
+      public get(input: { id: string; }): Promise<Professional> {
+        throw new Error("Method not implemented.");
       }
     }
     const professionalRepository = new ProfessionalRepositoryStub();

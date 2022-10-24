@@ -22,4 +22,8 @@ export class ProfessionalRepositoryStub implements ProfessionalRepository {
   }) {
     return Promise.resolve(this.output!);
   }
+
+  get(input: { id: string; }): Promise<Professional> {
+    throw new Error("Method not implemented.");
+  }
 }
