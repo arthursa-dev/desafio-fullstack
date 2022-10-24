@@ -6,7 +6,7 @@ describe('Professional', () => {
     const professional = new Professional({
       id: 'valid_id',
       name: 'name',
-      phone: '(99) 99999-9999',
+      phone: '(99)99999-9999',
       email: 'valid_email@mail.com',
       professionalType: 'valid_id',
       situation: true,
@@ -17,12 +17,25 @@ describe('Professional', () => {
     expect(professional).toEqual({
       id: 'valid_id',
       name: 'name',
-      phone: '(99) 99999-9999',
+      phone: '(99)99999-9999',
       email: 'valid_email@mail.com',
       professionalType: 'valid_id',
       situation: true,
       createdAt: now,
       updatedAt: now,
     });
+  });
+
+  it('should not create a professional with invalid phone number', () => {
+    expect(() => new Professional({
+      id: 'valid_id',
+      name: 'name',
+      phone: '(99)99999-999',
+      email: 'valid_email@mail.com',
+      professionalType: 'valid_id',
+      situation: true,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    })).toThrow(new Error('Invalid phone number'));
   });
 });
