@@ -27,5 +27,23 @@ describe('/professional-type', () => {
       updatedAt: expect.any(String),
     });
   });
+
+  it('POST /', async () => {
+    const response = await request(app)
+      .post('/professional-type')
+      .send({
+        description: 'Médica',
+        situation: true,
+      });
+  
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual({
+      id: expect.any(String),
+      description: 'Médica',
+      situation: true,
+      createdAt: expect.any(String),
+      updatedAt: expect.any(String),
+    });
+  });
 });
 
