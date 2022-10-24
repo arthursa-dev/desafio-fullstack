@@ -1,4 +1,5 @@
 import Router from 'express';
+import { CreateProfessionalType } from '../../application/useCases/CreateProfessionalType';
 import { GetProfessionalType } from '../../application/useCases/GetProfessionalType';
 import { ListProfessionalType } from '../../application/useCases/ListProfessionalType';
 import { PostgresDatabaseConnection } from '../../infra/db/postgresql/PostgresDatabaseConnection';
@@ -22,5 +23,14 @@ professionalTypeRouter.get('/:id', async (req, res) => {
     professionalTypeDBRepository
   );
   const result = await getProfessionalType.execute({ id });
+  return res.json(result);
+});
+
+professionalTypeRouter.post('/', async (req, res) => {
+  const { description, situation = true } = req.body;
+  const createProfessionalType = new CreateProfessionalType(
+    professionalTypeDBRepository
+  );
+  const result = await createProfessionalType.execute({ description, situation });
   return res.json(result);
 });
