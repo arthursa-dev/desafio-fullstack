@@ -14,5 +14,18 @@ describe('/professional-type', () => {
       updatedAt: expect.any(String),
     });
   });
+
+  it('GET /:id', async () => {
+    const response = await request(app).get('/professional-type/9b79242b-0d95-485d-aa29-847bcffb5985');
+  
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual({
+      id: expect.any(String),
+      description: 'Cientista',
+      situation: true,
+      createdAt: expect.any(String),
+      updatedAt: expect.any(String),
+    });
+  });
 });
 
