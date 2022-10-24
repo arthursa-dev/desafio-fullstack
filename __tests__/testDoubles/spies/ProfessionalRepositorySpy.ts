@@ -45,4 +45,28 @@ export class ProfessionalRepositorySpy implements ProfessionalRepository {
     this.id = id;
     return Promise.resolve(this.output);
   }
+
+  update({
+    id,
+    name,
+    phone,
+    email,
+    professionalType,
+    situation,
+  }: {
+    id: string;
+    name: string;
+    phone: string;
+    email: string;
+    professionalType: string;
+    situation: boolean;
+  }): Promise<Professional> {
+    this.id = id;
+    this.name = name;
+    this.phone = phone;
+    this.email = email;
+    this.professionalType = professionalType;
+    this.situation = situation;
+    return Promise.resolve(this.output);
+  }
 }

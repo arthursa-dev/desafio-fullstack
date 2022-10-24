@@ -51,6 +51,16 @@ describe('CreateProfessional Use Case', () => {
       public get(input: { id: string; }): Promise<Professional> {
         throw new Error("Method not implemented.");
       }
+
+      public update(input: {
+        name: string;
+        phone: string;
+        email: string;
+        professionalType: string;
+        situation: boolean;
+      }): Promise<Professional> {
+        throw new Error('Method not implemented.');
+      }
     }
     const professionalRepository = new ProfessionalRepositoryStub();
     const createProfessional = new CreateProfessional(
