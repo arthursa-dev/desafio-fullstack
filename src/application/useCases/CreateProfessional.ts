@@ -45,7 +45,7 @@ export class CreateProfessional {
       name: output.name,
       phone: output.phone,
       email: output.email,
-      professionalType: output.professionalType,
+      professionalType: output.professionalType as string,
       situation: output.situation,
       createdAt: output.createdAt,
       updatedAt: output.updatedAt,

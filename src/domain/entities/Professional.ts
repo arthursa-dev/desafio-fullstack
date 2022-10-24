@@ -1,9 +1,11 @@
+import { ProfessionalType } from "./ProfessionalType";
+
 type ProfessionalProps = {
   id: string;
   name: string;
   phone: string;
   email: string;
-  professionalType: string;
+  professionalType: string | ProfessionalType;
   situation: boolean;
   createdAt: Date;
   updatedAt: Date;
@@ -14,7 +16,7 @@ export class Professional {
   name: string;
   phone: string;
   email: string;
-  professionalType: string;
+  professionalType: string | ProfessionalType;
   situation: boolean;
   createdAt: Date;
   updatedAt: Date;
