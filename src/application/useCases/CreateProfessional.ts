@@ -8,6 +8,17 @@ type Input = {
   situation: boolean;
 };
 
+type Output = {
+  id: string;
+  name: string;
+  phone: string;
+  email: string;
+  professionalType: string;
+  situation: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 export class CreateProfessional {
   private readonly professionalRepository: ProfessionalRepository;
   
@@ -21,13 +32,23 @@ export class CreateProfessional {
     email,
     professionalType,
     situation,
-}: Input) {
-    await this.professionalRepository.add({
+}: Input): Promise<Output> {
+    const output = await this.professionalRepository.add({
       name,
       phone,
       email,
       professionalType,
       situation,
     });
+    return {
+      id: output.id,
+      name: output.name,
+      phone: output.phone,
+      email: output.email,
+      professionalType: output.professionalType,
+      situation: output.situation,
+      createdAt: output.createdAt,
+      updatedAt: output.updatedAt,
+    }
   }
 }
