@@ -1,8 +1,7 @@
 import { set, reset } from 'mockdate';
 import { CreateProfessional } from '../../../src/application/useCases/CreateProfessional';
 import { ProfessionalRepository } from '../../../src/domain/repositories/ProfessionalRepository';
-import { ProfessionalRepositoryStub } from '../../testDoubles';
-import { ProfessionalRepositorySpy } from '../../testDoubles/spies/ProfessionalRepositorySpy';
+import { ProfessionalRepositorySpy, ProfessionalRepositoryStub } from '../../testDoubles';
 
 describe('CreateProfessional Use Case', () => {
   const input = {
