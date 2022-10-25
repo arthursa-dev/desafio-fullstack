@@ -17,4 +17,5 @@ export interface ProfessionalRepository {
     professionalType: string;
     situation: boolean;
   }): Promise<Professional>;
+  list(): Promise<Professional[]>;
 }
