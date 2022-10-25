@@ -5,7 +5,7 @@ export class PostgresDatabaseConnection implements DatabaseConnection {
   private readonly pgp;
   
   constructor() {
-    this.pgp = pgp()('postgres://postgres:123456@localhost:5432/postgres');
+    this.pgp = pgp()(process.env.DB_URL_CONN as string);
   }
   
   query(statement: string, params: any) {
