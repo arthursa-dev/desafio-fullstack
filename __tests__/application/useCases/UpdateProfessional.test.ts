@@ -2,7 +2,7 @@ import { set, reset } from 'mockdate';
 import { UpdateProfessional } from '../../../src/application/useCases/UpdateProfessional';
 import { Professional } from '../../../src/domain/entities/Professional';
 import { ProfessionalRepository } from '../../../src/domain/repositories/ProfessionalRepository';
-import { ProfessionalRepositorySpy } from "../../testDoubles";
+import { ProfessionalRepositorySpy, ProfessionalRepositoryStub } from "../../testDoubles";
 
 describe('UpdateProfessional Use Case', () => {
   const input = {
@@ -57,5 +57,31 @@ describe('UpdateProfessional Use Case', () => {
 
     expect(() => updateProfessional.execute(input))
       .rejects.toThrow();
+  });
+
+  it('should return an updated professional data when passed an existing id', async () => {
+    const professionalRepository = new ProfessionalRepositoryStub();
+    const updateProfessional = new UpdateProfessional(
+      professionalRepository
+    );
+
+    const output = await updateProfessional.execute(input);
+
+    expect(output).toEqual({
+      id: 'valid_id',
+      name: 'new name',
+      phone: '(99)99999-9998',
+      email: 'valid_email@mail.com',
+      professionalType: {
+        id: 'valid_id',
+        description: 'valid description',
+        situation: true,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      situation: false,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    });
   });
 });

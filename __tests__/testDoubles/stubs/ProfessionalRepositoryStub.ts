@@ -46,6 +46,20 @@ export class ProfessionalRepositoryStub implements ProfessionalRepository {
     professionalType: string;
     situation: boolean;
   }): Promise<Professional> {
-    throw new Error('Method not implemented.');
+    return Promise.resolve(
+      new Professional({
+        ...this.output,
+        name: 'new name',
+        phone: '(99)99999-9998',
+        professionalType: new ProfessionalType({
+          id: 'valid_id',
+          description: 'valid description',
+          situation: true,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        }),
+        situation: false,
+      })
+    );
   }
 }
