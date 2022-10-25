@@ -61,6 +61,10 @@ describe('CreateProfessional Use Case', () => {
       }): Promise<Professional> {
         throw new Error('Method not implemented.');
       }
+
+      public list(): Promise<Professional[]> {
+        throw new Error('Method not implemented.');
+      }
     }
     const professionalRepository = new ProfessionalRepositoryStub();
     const createProfessional = new CreateProfessional(

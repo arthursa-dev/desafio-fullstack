@@ -62,4 +62,17 @@ export class ProfessionalRepositoryStub implements ProfessionalRepository {
       })
     );
   }
+
+  public list(): Promise<Professional[]> {
+    return Promise.resolve([new Professional({
+      ...this.output,
+      professionalType: new ProfessionalType({
+        id: 'valid_id',
+        description: 'valid description',
+        situation: true,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      }),
+    })]);
+  }
 }

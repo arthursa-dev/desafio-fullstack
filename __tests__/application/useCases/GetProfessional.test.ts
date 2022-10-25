@@ -44,13 +44,17 @@ describe('GetProfessional Use Case', () => {
         throw new Error();
       }
 
-      public update(input: {
+      update(input: {
         name: string;
         phone: string;
         email: string;
         professionalType: string;
         situation: boolean;
       }): Promise<Professional> {
+        throw new Error('Method not implemented.');
+      }
+
+      list(): Promise<Professional[]> {
         throw new Error('Method not implemented.');
       }
     }

@@ -1,4 +1,5 @@
 import { Professional } from "../../../src/domain/entities/Professional";
+import { ProfessionalType } from "../../../src/domain/entities/ProfessionalType";
 import { ProfessionalRepository } from "../../../src/domain/repositories/ProfessionalRepository";
 
 export class ProfessionalRepositorySpy implements ProfessionalRepository {
@@ -46,7 +47,7 @@ export class ProfessionalRepositorySpy implements ProfessionalRepository {
     return Promise.resolve(this.output);
   }
 
-  update({
+  public update({
     id,
     name,
     phone,
@@ -68,5 +69,18 @@ export class ProfessionalRepositorySpy implements ProfessionalRepository {
     this.professionalType = professionalType;
     this.situation = situation;
     return Promise.resolve(this.output);
+  }
+
+  public list(): Promise<Professional[]> {
+    return Promise.resolve([new Professional({
+      ...this.output,
+      professionalType: new ProfessionalType({
+        id: 'valid_id',
+        description: 'valid description',
+        situation: true,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      }),
+    })]);
   }
 }
