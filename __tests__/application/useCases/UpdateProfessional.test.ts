@@ -1,5 +1,7 @@
 import { set, reset } from 'mockdate';
 import { UpdateProfessional } from '../../../src/application/useCases/UpdateProfessional';
+import { Professional } from '../../../src/domain/entities/Professional';
+import { ProfessionalRepository } from '../../../src/domain/repositories/ProfessionalRepository';
 import { ProfessionalRepositorySpy } from "../../testDoubles";
 
 describe('UpdateProfessional Use Case', () => {
@@ -34,5 +36,26 @@ describe('UpdateProfessional Use Case', () => {
     expect(professionalRepository.email).toBe(input.email);
     expect(professionalRepository.professionalType).toBe(input.professionalType);
     expect(professionalRepository.situation).toBe(input.situation);
+  });
+
+  it('should throw an error if ProfessionalRepository throws', async () => {
+    class ProfessionalRepositoryStub implements ProfessionalRepository {
+      add(input: { name: string; phone: string; email: string; professionalType: string; situation: boolean; }): Promise<Professional> {
+        throw new Error('Method not implemented.');
+      }
+      get(input: { id: string; }): Promise<Professional> {
+        throw new Error('Method not implemented.');
+      }
+      update(input: { id: string; name: string; phone: string; email: string; professionalType: string; situation: boolean; }): Promise<Professional> {
+        throw new Error();
+      }
+    }
+    const professionalRepository = new ProfessionalRepositoryStub();
+    const updateProfessional = new UpdateProfessional(
+      professionalRepository
+    );
+
+    expect(() => updateProfessional.execute(input))
+      .rejects.toThrow();
   });
 });
