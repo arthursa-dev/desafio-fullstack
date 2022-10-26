@@ -51,13 +51,7 @@ export class ProfessionalRepositoryStub implements ProfessionalRepository {
         ...this.output,
         name: 'new name',
         phone: '(99)99999-9998',
-        professionalType: new ProfessionalType({
-          id: 'valid_id',
-          description: 'valid description',
-          situation: true,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        }),
+        professionalType: 'valid_id',
         situation: false,
       })
     );
