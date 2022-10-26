@@ -145,6 +145,28 @@ describe('app', () => {
         updatedAt: expect.any(String),
       });
     });
+
+    it('GET /:id', async () => {
+      const response = await request(app).get(`/professional/${professional.id}`);
+    
+      expect(response.status).toBe(200);
+      expect(response.body).toEqual({
+        id: professional.id,
+        name: professional.name,
+        phone: professional.phone,
+        email: professional.email,
+        professionalType: {
+          id: professionalType.id,
+          description: professionalType.description,
+          situation: professionalType.situation,
+          createdAt: expect.any(String),
+          updatedAt: expect.any(String),
+        },
+        situation: professional.situation,
+        createdAt: expect.any(String),
+        updatedAt: expect.any(String),
+      });
+    });
   });
 });
 
