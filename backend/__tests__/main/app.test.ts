@@ -18,7 +18,7 @@ const professional = {
 }
 
 describe('app', () => {
-  describe.skip('/professional-type', () => {
+  describe('/professional-type', () => {
     beforeEach(async () => {
       await databaseConnection.query('delete from professional_type', []);
       await databaseConnection.query(
@@ -97,7 +97,7 @@ describe('app', () => {
     });
   });
   
-  describe.skip('/professional', () => {
+  describe('/professional', () => {
     beforeEach(async () => {
       await databaseConnection.query('delete from professional', []);
       await databaseConnection.query('delete from professional_type', []);
