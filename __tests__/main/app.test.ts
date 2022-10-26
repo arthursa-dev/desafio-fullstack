@@ -97,7 +97,7 @@ describe('app', () => {
     });
   });
   
-  describe('/professional', () => {
+  describe.skip('/professional', () => {
     beforeEach(async () => {
       await databaseConnection.query('delete from professional', []);
       await databaseConnection.query('delete from professional_type', []);
