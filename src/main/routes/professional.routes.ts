@@ -1,4 +1,5 @@
 import Router from 'express';
+import { CreateProfessional } from '../../application/useCases/CreateProfessional';
 import { GetProfessional } from '../../application/useCases/GetProfessional';
 import { ListProfessional } from '../../application/useCases/ListProfessional';
 import { PostgresDatabaseConnection } from '../../infra/db/postgresql/PostgresDatabaseConnection';
@@ -22,5 +23,26 @@ professionalRouter.get('/:id', async (req, res) => {
     professionalDBRepository
   );
   const result = await getProfessional.execute({ id });
+  return res.json(result);
+});
+
+professionalRouter.post('/', async (req, res) => {
+  const {
+    name,
+    phone,
+    email,
+    professionalType,
+    situation,
+  } = req.body;
+  const createProfessional = new CreateProfessional(
+    professionalDBRepository
+  );
+  const result = await createProfessional.execute({
+    name,
+    phone,
+    email,
+    professionalType,
+    situation,
+  });
   return res.json(result);
 });
