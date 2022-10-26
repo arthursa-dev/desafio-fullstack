@@ -15,13 +15,7 @@ type Output = {
   name: string;
   phone: string;
   email: string;
-  professionalType: {
-    id: string;
-    description: string;
-    situation: boolean;
-    createdAt: Date;
-    updatedAt: Date;
-  };
+  professionalType: string;
   situation: boolean;
   createdAt: Date;
   updatedAt: Date;
@@ -50,19 +44,13 @@ export class UpdateProfessional {
       professionalType,
       situation
     });
-    const outputProfessionalType = output.professionalType as ProfessionalType;
+    const outputProfessionalType = output.professionalType as string;
     return {
       id: output.id,
       name: output.name,
       phone: output.phone,
       email: output.email,
-      professionalType: {
-        id: outputProfessionalType.id,
-        description: outputProfessionalType.description,
-        situation: outputProfessionalType.situation,
-        createdAt: outputProfessionalType.createdAt,
-        updatedAt: outputProfessionalType.updatedAt,
-      },
+      professionalType: outputProfessionalType,
       situation: output.situation,
       createdAt: output.createdAt,
       updatedAt: output.updatedAt,

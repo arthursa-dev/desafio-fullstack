@@ -2,6 +2,7 @@ import Router from 'express';
 import { CreateProfessional } from '../../application/useCases/CreateProfessional';
 import { GetProfessional } from '../../application/useCases/GetProfessional';
 import { ListProfessional } from '../../application/useCases/ListProfessional';
+import { UpdateProfessional } from '../../application/useCases/UpdateProfessional';
 import { PostgresDatabaseConnection } from '../../infra/db/postgresql/PostgresDatabaseConnection';
 import { ProfessionalDBRepository } from '../../infra/repositories/db/ProfessionalDBRepository';
 
@@ -38,6 +39,29 @@ professionalRouter.post('/', async (req, res) => {
     professionalDBRepository
   );
   const result = await createProfessional.execute({
+    name,
+    phone,
+    email,
+    professionalType,
+    situation,
+  });
+  return res.json(result);
+});
+
+professionalRouter.put('/:id', async (req, res) => {
+  const { id } = req.params;
+  const {
+    name,
+    phone,
+    email,
+    professionalType,
+    situation,
+  } = req.body;
+  const updateProfessional = new UpdateProfessional(
+    professionalDBRepository
+  );
+  const result = await updateProfessional.execute({
+    id,
     name,
     phone,
     email,

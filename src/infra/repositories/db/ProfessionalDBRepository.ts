@@ -65,8 +65,42 @@ export class ProfessionalDBRepository implements ProfessionalRepository {
     });
   }
 
-  update(input: { id: string; name: string; phone: string; email: string; professionalType: string; situation: boolean; }): Promise<Professional> {
-    throw new Error("Method not implemented.");
+  async update({
+    id,
+    name,
+    phone,
+    email,
+    professionalType,
+    situation
+  }: {
+    id: string;
+    name: string;
+    phone: string;
+    email: string;
+    professionalType: string;
+    situation: boolean;
+  }): Promise<Professional> {
+    const [result] = await this.databaseConnection.query(
+      "update professional set name=$1, phone=$2, email=$3, professional_type=$4, situation=$5 where id = $6 returning *",
+      [
+        name,
+        phone,
+        email,
+        professionalType,
+        situation,
+        id
+      ]
+    );
+    return new Professional({
+      id: result.id,
+      name: result.name,
+      phone: result.phone,
+      email: result.email,
+      professionalType: result.professional_type,
+      situation: result.situation,
+      createdAt: result.created_at,
+      updatedAt: result.updated_at,
+    });
   }
   
   async list(): Promise<Professional[]> {
