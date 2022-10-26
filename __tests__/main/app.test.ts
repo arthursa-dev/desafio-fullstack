@@ -167,6 +167,31 @@ describe('app', () => {
         updatedAt: expect.any(String),
       });
     });
+
+    it('POST /', async () => {
+      const requestBody = {
+        name: 'Josefa Rafaela Julia das Neves',
+        phone: '(69)99227-6151',
+        email: 'josefa.rafaela.dasneves@yhaoo.com.br',
+        professionalType: 'dd145fa8-7557-40cf-9973-044ec26cd9ff',
+        situation: false,
+      }
+      const response = await request(app)
+        .post('/professional')
+        .send(requestBody);
+      
+      expect(response.status).toBe(200);
+      expect(response.body).toEqual({
+        id: expect.any(String),
+        name: requestBody.name,
+        phone: requestBody.phone,
+        email: requestBody.email,
+        professionalType: requestBody.professionalType,
+        situation: requestBody.situation,
+        createdAt: expect.any(String),
+        updatedAt: expect.any(String),
+      });
+    });
   });
 });
 
