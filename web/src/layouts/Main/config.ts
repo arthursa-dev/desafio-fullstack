@@ -5,41 +5,46 @@ import {
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { createElement } from 'react';
+import { NavigateFunction } from 'react-router-dom';
 
-export const menuItems: MenuProps['items'] = [
-  {
-    key: 'home',
-    icon: createElement(HomeOutlined),
-    label: 'Home',
-  },
-  {
-    key: 'professional',
-    icon: createElement(UserOutlined),
-    label: 'Profissionais',
-    children: [
-      {
-        key: 'listProfessionals',
-        label: 'Listar',
-      },
-      {
-        key: 'addProfessionals',
-        label: 'Cadastrar',
-      }
-    ]
-  },
-  {
-    key: 'professionalType',
-    icon: createElement(AuditOutlined),
-    label: 'Cargos',
-    children: [
-      {
-        key: 'listProfessionalsType',
-        label: 'Listar',
-      },
-      {
-        key: 'addProfessionalsType',
-        label: 'Cadastrar',
-      }
-    ]
-  },
-];
+export function menuItems(navigate: NavigateFunction): MenuProps['items'] {
+  return ([
+    {
+      key: 'home',
+      icon: createElement(HomeOutlined),
+      label: 'Home',
+      onClick: () => navigate('/')
+    },
+    {
+      key: 'professional',
+      icon: createElement(UserOutlined),
+      label: 'Profissionais',
+      children: [
+        {
+          key: 'listProfessionals',
+          label: 'Listar',
+          onClick: () => navigate('/professionals')
+        },
+        {
+          key: 'addProfessionals',
+          label: 'Cadastrar',
+        }
+      ]
+    },
+    {
+      key: 'professionalType',
+      icon: createElement(AuditOutlined),
+      label: 'Cargos',
+      children: [
+        {
+          key: 'listProfessionalsType',
+          label: 'Listar',
+        },
+        {
+          key: 'addProfessionalsType',
+          label: 'Cadastrar',
+        }
+      ]
+    },
+  ]);
+}

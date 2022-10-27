@@ -1,0 +1,109 @@
+import { useEffect, useState } from "react";
+import { Checkbox, Table, Typography } from "antd";
+import { EditOutlined } from '@ant-design/icons';
+import axios from 'axios';
+
+import type { ColumnsType } from 'antd/es/table';
+
+const { Text, Title } = Typography;
+
+export interface ProfessionalType {
+  id: string;
+  description: string;
+  situation: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface Professional {
+  id: string;
+  name: string;
+  phone: string;
+  email: string;
+  professionalType: ProfessionalType;
+  situation: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+interface DataType {
+  key: string;
+  name: string;
+  phone: string;
+  email: string;
+  professionalType: string;
+  situation: boolean
+}
+
+const columns: ColumnsType<DataType> = [
+  {
+    key: 'name',
+    title: 'Nome',
+    dataIndex: 'name',
+  },
+  {
+    key: 'phone',
+    title: 'Telefone',
+    dataIndex: 'phone',
+    responsive: ["sm"],
+  },
+  {
+    key: 'email',
+    title: 'E-mail',
+    dataIndex: 'email',
+    responsive: ["sm"],
+  },
+  {
+    key: 'professionalType',
+    title: 'Cargo',
+    dataIndex: 'professionalType',
+  },
+  {
+    key: 'situation',
+    title: 'Situação',
+    dataIndex: 'situation',
+    responsive: ["sm"],
+    render: (value: boolean) => (
+      <Checkbox checked={value} disabled={false} />
+    ),
+  },
+  {
+    title: '',
+    key: 'action',
+    render: () => (
+      <EditOutlined />
+    ),
+  },
+];
+
+function getProfessionalsDataSource(data: Professional[]) {
+  return data.map((professional) => ({
+    key: professional.id,
+    name: professional.name,
+    phone: professional.phone,
+    email: professional.email,
+    professionalType: professional.professionalType.description,
+    situation: professional.situation
+  }));
+}
+
+export function ListProfessionals() {
+  const [professionals, setProfessionals] = useState<Professional[]>([]);
+  
+  useEffect(() => {
+    axios.get('http://localhost:3333/professional')
+      .then((res) => setProfessionals(res.data));
+  }, []);
+  
+  return (
+    <div>
+      <Title>Lista de Profissionais</Title>
+      <Table
+        id="professionals-table"
+        columns={columns}
+        dataSource={getProfessionalsDataSource(professionals)}
+        pagination={false}
+      />
+    </div>
+  );
+}

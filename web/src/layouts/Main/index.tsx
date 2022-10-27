@@ -1,7 +1,6 @@
 import { ReactNode } from 'react';
 import { Layout, Menu } from 'antd';
-import { Outlet } from 'react-router-dom';
-
+import { Outlet, useNavigate } from 'react-router-dom';
 
 import { menuItems } from './config';
 
@@ -12,6 +11,8 @@ type MainLayoutProps = {
 };
 
 export function MainLayout({ children }: MainLayoutProps) {
+  const navigate = useNavigate();
+
   return (
     <Layout>
       <Sider
@@ -28,7 +29,7 @@ export function MainLayout({ children }: MainLayoutProps) {
           defaultSelectedKeys={['home']}
           theme="dark"
           mode="inline"
-          items={menuItems}
+          items={menuItems(navigate)}
         />
       </Sider>
       <Layout>
