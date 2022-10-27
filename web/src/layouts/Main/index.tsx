@@ -1,5 +1,7 @@
 import { ReactNode } from 'react';
 import { Layout, Menu } from 'antd';
+import { Outlet } from 'react-router-dom';
+
 
 import { menuItems } from './config';
 
@@ -32,7 +34,7 @@ export function MainLayout({ children }: MainLayoutProps) {
       <Layout>
         <Content style={{ margin: '24px 16px 0' }}>
           <div style={{ padding: 24 }}>
-            {children}
+            <Outlet />
           </div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>
