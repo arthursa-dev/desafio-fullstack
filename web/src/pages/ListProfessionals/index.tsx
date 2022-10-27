@@ -4,27 +4,9 @@ import { EditOutlined } from '@ant-design/icons';
 import axios from 'axios';
 
 import type { ColumnsType } from 'antd/es/table';
+import { Professional } from "../../types";
 
 const { Text, Title } = Typography;
-
-export interface ProfessionalType {
-  id: string;
-  description: string;
-  situation: boolean;
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-export interface Professional {
-  id: string;
-  name: string;
-  phone: string;
-  email: string;
-  professionalType: ProfessionalType;
-  situation: boolean;
-  createdAt: Date;
-  updatedAt: Date;
-}
 
 interface DataType {
   key: string;
