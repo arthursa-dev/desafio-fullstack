@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Checkbox, Table, Typography } from "antd";
 import { EditOutlined } from '@ant-design/icons';
-import axios from 'axios';
+
+import { getProfessionals } from "../../services/getProfessionals";
 
 import type { ColumnsType } from 'antd/es/table';
 import { Professional } from "../../types";
@@ -73,8 +74,8 @@ export function ListProfessionals() {
   const [professionals, setProfessionals] = useState<Professional[]>([]);
   
   useEffect(() => {
-    axios.get('http://localhost:3333/professional')
-      .then((res) => setProfessionals(res.data));
+    getProfessionals()
+    .then((res) => setProfessionals(res));
   }, []);
   
   return (
