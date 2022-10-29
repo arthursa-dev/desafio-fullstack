@@ -28,6 +28,7 @@ function findItemIndexBydId(professionals: Professional[], id: string) {
 
 export function ListProfessionals() {
   const [professionals, setProfessionals] = useState<Professional[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
@@ -55,8 +56,10 @@ export function ListProfessionals() {
   }, []);
   
   useEffect(() => {
+    setIsLoading(true);
     getProfessionals()
-    .then((res) => setProfessionals(res));
+      .then((res) => setProfessionals(res))
+      .finally(() => setIsLoading(false));
   }, []);
   
   return (
@@ -114,6 +117,7 @@ export function ListProfessionals() {
           },
         ]}
         dataSource={getProfessionalsDataSource(professionals)}
+        loading={isLoading}
         pagination={false}
       />
       <Modal
