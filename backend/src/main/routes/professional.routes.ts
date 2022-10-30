@@ -10,6 +10,66 @@ export const professionalRouter = Router();
 const postgresDatabaseConnection = new PostgresDatabaseConnection();
 const professionalDBRepository = new ProfessionalDBRepository(postgresDatabaseConnection);
 
+/**
+ * @swagger
+ * components:
+ *  schemas:
+ *    Professional:
+ *      type: object
+ *      properties:
+ *        id:
+ *          type: string
+ *        name:
+ *          type: string
+ *        phone:
+ *          type: string
+ *        email:
+ *          type: string
+ *        professionalType:
+ *          $ref: '#/components/schemas/ProfessionalType'
+ *        situation:
+ *          type: boolean
+ *        createdAt:
+ *          type: string
+ *        updatedAt:
+ *          type: string
+ *    ProfessionalType:
+ *      type: object
+ *      properties:
+ *        id:
+ *          type: string
+ *        description:
+ *          type: string
+ *        situation:
+ *          type: boolean
+ *        createdAt:
+ *          type: string
+ *        updatedAt:
+ *          type: string
+ */
+
+/**
+ * @swagger
+ * tags:
+ *   name: Professional
+ */
+
+/**
+ * @swagger
+ * /professional:
+ *   get:
+ *     summary: Retorna uma lista com todos os profissionais cadastrados
+ *     tags: [Professional]
+ *     responses:
+ *       200:
+ *         description: lista de profissionais
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Professional'
+ */
 professionalRouter.get('/', async (req, res) => {
   const listProfessional = new ListProfessional(
     professionalDBRepository
