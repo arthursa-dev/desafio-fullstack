@@ -186,6 +186,61 @@ professionalRouter.post('/', async (req, res) => {
   return res.status(201).json(result);
 });
 
+/**
+ * @swagger
+ * /professional/{id}:
+ *   put:
+ *     summary: Atualiza um profissional
+ *     tags: [Profissional]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID do profissional
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               phone:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               professionalType:
+ *                 type: string
+ *               situation:
+ *                 type: boolean
+ *     responses:
+ *       200:
+ *         description: O profissional foi criado com sucesso 
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: string
+ *                 name:
+ *                   type: string
+ *                 phone:
+ *                   type: string
+ *                 email:
+ *                   type: string
+ *                 professionalType:
+ *                   type: string
+ *                 situation:
+ *                   type: boolean
+ *                 createdAt:
+ *                   type: string
+ *                 updatedAt:
+ *                   type: string
+ */
 professionalRouter.put('/:id', async (req, res) => {
   const { id } = req.params;
   const {
