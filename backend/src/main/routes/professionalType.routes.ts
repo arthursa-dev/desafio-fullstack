@@ -132,6 +132,38 @@ professionalTypeRouter.post('/', async (req, res) => {
   return res.status(201).json(result);
 });
 
+/**
+ * @swagger
+ * /professional-type/{id}:
+ *   put:
+ *     summary: Atualiza um tipo do profissional
+ *     tags: [Tipo do Profissional]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID do tipo profissional
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               description:
+ *                 type: string
+ *               situation:
+ *                 type: boolean
+ *     responses:
+ *       200:
+ *         description: O tipo do profissional foi atualizado com sucesso 
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ProfessionalType'
+ */
 professionalTypeRouter.put('/:id', async (req, res) => {
   const { id } = req.params;
   const { description, situation = true } = req.body;
