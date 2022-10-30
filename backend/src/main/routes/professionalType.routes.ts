@@ -10,6 +10,47 @@ export const professionalTypeRouter = Router();
 const postgresDatabaseConnection = new PostgresDatabaseConnection();
 const professionalTypeDBRepository = new ProfessionalTypeDBRepository(postgresDatabaseConnection);
 
+/**
+ * @swagger
+ * components:
+ *  schemas:
+ *    ProfessionalType:
+ *      type: object
+ *      properties:
+ *        id:
+ *          type: string
+ *        description:
+ *          type: string
+ *        situation:
+ *          type: boolean
+ *        createdAt:
+ *          type: string
+ *        updatedAt:
+ *          type: string
+ */
+
+/**
+ * @swagger
+ * tags:
+ *   name: Tipo do Profissional
+ */
+
+/**
+ * @swagger
+ * /professional-type:
+ *   get:
+ *     summary: Retorna uma lista com todos os tipos dos profissionais cadastrados
+ *     tags: [Tipo do Profissional]
+ *     responses:
+ *       200:
+ *         description: lista dos tipos dos profissionais
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/ProfessionalType'
+ */
 professionalTypeRouter.get('/', async (req, res) => {
   const listProfessionalType = new ListProfessionalType(
     professionalTypeDBRepository
