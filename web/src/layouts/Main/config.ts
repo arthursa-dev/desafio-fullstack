@@ -45,6 +45,7 @@ export function menuItems(navigate: NavigateFunction): MenuProps['items'] {
         {
           key: 'addProfessionalsType',
           label: 'Cadastrar',
+          onClick: () => navigate('/add-professional-type')
         }
       ]
     },
