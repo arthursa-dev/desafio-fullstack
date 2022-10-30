@@ -37,6 +37,7 @@ export function CreateProfessionalForm({ form, defaultValues }: CreateProfession
     <Form
       layout="vertical"
       form={form}
+      initialValues={{ situation: false }}
     >
       <Form.Item 
         label="Nome" 
