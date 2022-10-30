@@ -47,6 +47,7 @@ export class ProfessionalDBRepository implements ProfessionalRepository {
       "select * from professional as p join (select id as ptId, description as ptDescription, situation as ptSituation, created_at as ptCreated_at, updated_at as ptUpdated_at from professional_type) pt on pt.ptId = p.professional_type where p.id = $1",
       [id]
     );
+    if (!result) throw new Error('Professional not found');
     return new Professional({
       id: result.id,
       name: result.name,
@@ -91,6 +92,7 @@ export class ProfessionalDBRepository implements ProfessionalRepository {
         id
       ]
     );
+    if (!result) throw new Error('Professional not found');
     return new Professional({
       id: result.id,
       name: result.name,

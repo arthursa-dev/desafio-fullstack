@@ -23,6 +23,7 @@ export class ProfessionalTypeDBRepository implements ProfessionalTypeRepository 
 
   async get({ id }: { id: string; }): Promise<ProfessionalType | undefined> {
     const [result] = await this.databaseConnection.query("select * from professional_type where id = $1", [id]);
+    if (!result) throw new Error('Professional type not found');
     return new ProfessionalType({
       id: result.id,
       description: result.description,
@@ -45,6 +46,7 @@ export class ProfessionalTypeDBRepository implements ProfessionalTypeRepository 
       "update professional_type set description=$1, situation=$2 where id = $3 returning *",
       [description, situation, id]
     );
+    if (!result) throw new Error('Professional type not found');
     return new ProfessionalType({
       id: result.id,
       description: result.description,
