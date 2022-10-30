@@ -117,6 +117,54 @@ professionalRouter.get('/:id', async (req, res) => {
   return res.json(result);
 });
 
+/**
+ * @swagger
+ * /professional:
+ *   post:
+ *     summary: Cria um novo profissional
+ *     tags: [Profissional]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               phone:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               professionalType:
+ *                 type: string
+ *               situation:
+ *                 type: boolean
+ *     responses:
+ *       200:
+ *         description: O profissional foi criado com sucesso 
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: string
+ *                 name:
+ *                   type: string
+ *                 phone:
+ *                   type: string
+ *                 email:
+ *                   type: string
+ *                 professionalType:
+ *                   type: string
+ *                 situation:
+ *                   type: boolean
+ *                 createdAt:
+ *                   type: string
+ *                 updatedAt:
+ *                   type: string
+ */
 professionalRouter.post('/', async (req, res) => {
   const {
     name,
