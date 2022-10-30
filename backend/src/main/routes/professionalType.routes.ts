@@ -59,6 +59,36 @@ professionalTypeRouter.get('/', async (req, res) => {
   return res.json(result);
 });
 
+/**
+ * @swagger
+ * /professional-type/{id}:
+ *   get:
+ *     summary: Retorna um tipo do profissional pelo ID
+ *     tags: [Tipo do Profissional]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID do tipo do profissional
+ *     responses:
+ *       200:
+ *         description: Dados do tipo do profissional referente ao ID passado por parâmetro
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ProfessionalType'
+ *       404:
+ *         description: O tipo do profissional não foi encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ */
 professionalTypeRouter.get('/:id', async (req, res) => {
   const { id } = req.params;
   const getProfessionalType = new GetProfessionalType(
