@@ -51,7 +51,7 @@ const professionalDBRepository = new ProfessionalDBRepository(postgresDatabaseCo
 /**
  * @swagger
  * tags:
- *   name: Professional
+ *   name: Profissional
  */
 
 /**
@@ -59,7 +59,7 @@ const professionalDBRepository = new ProfessionalDBRepository(postgresDatabaseCo
  * /professional:
  *   get:
  *     summary: Retorna uma lista com todos os profissionais cadastrados
- *     tags: [Professional]
+ *     tags: [Profissional]
  *     responses:
  *       200:
  *         description: lista de profissionais
@@ -78,6 +78,36 @@ professionalRouter.get('/', async (req, res) => {
   return res.json(result);
 });
 
+/**
+ * @swagger
+ * /professional/{id}:
+ *   get:
+ *     summary: Retorna um professional pelo ID
+ *     tags: [Profissional]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID do profissional
+ *     responses:
+ *       200:
+ *         description: Dados do profissional referente ao ID passado por parâmetro
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Professional'
+ *       404:
+ *         description: O profissional não foi encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ */
 professionalRouter.get('/:id', async (req, res) => {
   const { id } = req.params;
   const getProfessional = new GetProfessional(
