@@ -10,6 +10,7 @@ import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUI from 'swagger-ui-express';
 
 import { router } from './routes/index.routes';
+import { AppError } from '../shared/AppError';
 
 export const app = express();
 
@@ -57,9 +58,9 @@ const errorLogger = (error: Error, request: Request, response: Response, next: N
   next(error);
 }
 
-const errorHandler = (error: Error, request: Request, response: Response, next: NextFunction) => {
-  if (error instanceof Error) {
-    return response.status(400).json({
+const errorHandler = (error: AppError, request: Request, response: Response, next: NextFunction) => {
+  if (error instanceof AppError) {
+    return response.status(error.statusCode || 400).json({
       message: error.message,
     });
   }
