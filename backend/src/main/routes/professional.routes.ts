@@ -218,7 +218,7 @@ professionalRouter.post('/', async (req, res) => {
  *                 type: boolean
  *     responses:
  *       200:
- *         description: O profissional foi criado com sucesso 
+ *         description: O profissional foi atualizado com sucesso 
  *         content:
  *           application/json:
  *             schema:
