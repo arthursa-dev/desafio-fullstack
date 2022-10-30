@@ -40,6 +40,7 @@ export function menuItems(navigate: NavigateFunction): MenuProps['items'] {
         {
           key: 'listProfessionalsType',
           label: 'Listar',
+          onClick: () => navigate('/professionals-type')
         },
         {
           key: 'addProfessionalsType',

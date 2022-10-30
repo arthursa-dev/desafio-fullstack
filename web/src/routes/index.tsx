@@ -3,6 +3,7 @@ import { MainLayout } from '../layouts/Main';
 import { AddProfessionals } from '../pages/AddProfessional';
 import { Home } from '../pages/Home';
 import { ListProfessionals } from '../pages/ListProfessionals';
+import { ListProfessionalsType } from '../pages/ListProfessionalsType';
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: '/add-professional',
         element: <AddProfessionals />
+      },
+      {
+        path: '/professionals-type',
+        element: <ListProfessionalsType />
       }
     ],
   },
