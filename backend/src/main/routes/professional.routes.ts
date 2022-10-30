@@ -45,7 +45,7 @@ professionalRouter.post('/', async (req, res) => {
     professionalType,
     situation,
   });
-  return res.json(result);
+  return res.status(201).json(result);
 });
 
 professionalRouter.put('/:id', async (req, res) => {
@@ -68,5 +68,5 @@ professionalRouter.put('/:id', async (req, res) => {
     professionalType,
     situation,
   });
-  return res.json(result);
+  return res.status(201).json(result);
 });

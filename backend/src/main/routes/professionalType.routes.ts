@@ -33,7 +33,7 @@ professionalTypeRouter.post('/', async (req, res) => {
     professionalTypeDBRepository
   );
   const result = await createProfessionalType.execute({ description, situation });
-  return res.json(result);
+  return res.status(201).json(result);
 });
 
 professionalTypeRouter.put('/:id', async (req, res) => {
@@ -43,5 +43,5 @@ professionalTypeRouter.put('/:id', async (req, res) => {
     professionalTypeDBRepository
   );
   const result = await updateProfessionalType.execute({ id, description, situation });
-  return res.json(result);
+  return res.status(201).json(result);
 });

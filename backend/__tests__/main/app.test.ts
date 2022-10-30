@@ -67,7 +67,7 @@ describe('app', () => {
         .post('/professional-type')
         .send(requestBody);
     
-      expect(response.status).toBe(200);
+      expect(response.status).toBe(201);
       expect(response.body).toEqual({
         id: expect.any(String),
         description: requestBody.description,
@@ -86,7 +86,7 @@ describe('app', () => {
       .put(`/professional-type/${professionalType.id}`)
       .send(requestBody);
       
-      expect(response.status).toBe(200);
+      expect(response.status).toBe(201);
       expect(response.body).toEqual({
         id: professionalType.id,
         description: requestBody.description,
@@ -180,7 +180,7 @@ describe('app', () => {
         .post('/professional')
         .send(requestBody);
       
-      expect(response.status).toBe(200);
+      expect(response.status).toBe(201);
       expect(response.body).toEqual({
         id: expect.any(String),
         name: requestBody.name,
@@ -205,7 +205,7 @@ describe('app', () => {
         .put(`/professional/${professional.id}`)
         .send(requestBody);
       
-      expect(response.status).toBe(200);
+      expect(response.status).toBe(201);
       expect(response.body).toEqual({
         id: professional.id,
         name: requestBody.name,
