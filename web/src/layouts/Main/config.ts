@@ -35,7 +35,7 @@ export function menuItems(navigate: NavigateFunction): MenuProps['items'] {
     {
       key: 'professionalType',
       icon: createElement(AuditOutlined),
-      label: 'Cargos',
+      label: 'Tipo do Profissional',
       children: [
         {
           key: '/professionals-type',

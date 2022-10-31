@@ -67,7 +67,7 @@ export function ListProfessionalsType() {
   
   return (
     <div>
-      <Title>Lista de Cargos</Title>
+      <Title>Lista de Tipos do Profissional</Title>
       <Table
         columns={[
           {
@@ -108,7 +108,7 @@ export function ListProfessionalsType() {
         pagination={false}
       />
       <Modal
-        title="Atualizar Cargo"
+        title="Atualizar Tipo do Profissional"
         open={isModalOpen}
         onOk={handleOk}
         confirmLoading={confirmLoading}
