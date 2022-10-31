@@ -26,7 +26,7 @@ export function AddProfessionalType() {
     } catch (error) {
       console.log(error);
     } finally {
-      setIsLoading(true);
+      setIsLoading(false);
     }
   }, []);
   
