@@ -26,10 +26,11 @@ export function MainLayout({ children }: MainLayoutProps) {
         }}
       >
         <Menu
-          defaultSelectedKeys={['home']}
-          theme="dark"
-          mode="inline"
+          defaultSelectedKeys={[window.location.pathname]}
           items={menuItems(navigate)}
+          mode="inline"
+          selectedKeys={[window.location.pathname]}
+          theme="dark"
         />
       </Sider>
       <Layout>

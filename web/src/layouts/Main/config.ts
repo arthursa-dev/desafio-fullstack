@@ -10,7 +10,7 @@ import { NavigateFunction } from 'react-router-dom';
 export function menuItems(navigate: NavigateFunction): MenuProps['items'] {
   return ([
     {
-      key: 'home',
+      key: '/',
       icon: createElement(HomeOutlined),
       label: 'Home',
       onClick: () => navigate('/')
@@ -21,12 +21,12 @@ export function menuItems(navigate: NavigateFunction): MenuProps['items'] {
       label: 'Profissionais',
       children: [
         {
-          key: 'listProfessionals',
+          key: '/professionals',
           label: 'Listar',
           onClick: () => navigate('/professionals')
         },
         {
-          key: 'addProfessionals',
+          key: '/add-professional',
           label: 'Cadastrar',
           onClick: () => navigate('/add-professional')
         }
@@ -38,12 +38,12 @@ export function menuItems(navigate: NavigateFunction): MenuProps['items'] {
       label: 'Cargos',
       children: [
         {
-          key: 'listProfessionalsType',
+          key: '/professionals-type',
           label: 'Listar',
           onClick: () => navigate('/professionals-type')
         },
         {
-          key: 'addProfessionalsType',
+          key: '/add-professional-type',
           label: 'Cadastrar',
           onClick: () => navigate('/add-professional-type')
         }
