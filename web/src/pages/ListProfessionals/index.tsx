@@ -121,7 +121,7 @@ export function ListProfessionals() {
         pagination={false}
       />
       <Modal
-        title="Title"
+        title="Atualizar Profissional"
         open={isModalOpen}
         onOk={handleOk}
         confirmLoading={confirmLoading}
